@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+  <channel>
+    <title>Titre du channel</title>
+    <link>http://www.monJournal.fr</link>
+    <description>Description du channel</description>
+ 	<language>fr</language>
+ 	<copyright>Copyright 2013, Nom societe</copyright>
+ 	<managingEditor>blardje@gmail.com</managingEditor>
+ 	<webMaster>webmaster@monsite.com</webMaster>
+ 	<category>Dernieres news publiés</category>
+ 	
+	<!--  	Permet d'indiquer le nom du programme/outil qui a généré le flux : -->
+	<generator>PHP/MySQL</generator>
+  
+  	<docs>http://www.rssboard.org</docs>
+  	
+	<!--   	« ttl » ou « Time to Live » indique l'intervale de temps, en minutes, avant qu'il ne faille rafraichir le flux RSS. (Le rafraichissement est automatiquement effectué par le lecteur de flux). -->
+	<ttl>60</ttl>
+	
+	
+    <item>
+      <title>Titre de la news</title>
+      <link>http://www.craym.eu/tutoriels/developpement/flux_RSS.html</link>
+      <description>Un tutoriels sur les Flux RSS</description>
+      <pubDate>Sat, 01 Jan 2011 12:00:00 GMT</pubDate>
+    </item>
+    
+  </channel>
+</rss>
