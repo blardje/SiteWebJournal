@@ -1,11 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Utilisateur {
 	private String name;
 	private String surname;
 	private String mail;
 	private String pseudo;
 	private String password;
+	private ArrayList<Article> listArticle = new ArrayList<Article>();
+	private ArrayList<Journal> listJournal = new ArrayList<Journal>();
 	
 	public Utilisateur(String name, String surname, String mail, String pseudo,
 			String password) {
