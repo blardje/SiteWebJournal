@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Démonstration de la jsp</title>
-<link rel="stylesheet" href="css/index.css">
+<!-- <link rel="stylesheet" href="css/index.css"> -->
 </head>
 <body>
 	<div>
-	<form name="nimp" action="pdfpdf" method="post" >
+	<form name="nimp" action="CreationPdf" method="post" >
 		<p>Identifiant : 
 		<input type="text" name="login" value="login"  />
 		</p>
