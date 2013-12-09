@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -64,6 +65,10 @@ public final class InscriptionForm {
         traiterTelephone( telephone, user );
         traiterEmail( email, user );
         traiterImage( user, request, chemin );
+        
+    	java.util.Date now = new java.util.Date();
+        user.setDateInscription(new Timestamp(now.getTime()));
+        
         try {
             if ( erreurs.isEmpty() ) {
                 userDao.creer( user );
@@ -210,8 +215,8 @@ public final class InscriptionForm {
 
                 /* Récupération du contenu du fichier */
                 contenuFichier = part.getInputStream();
-                contenuFichier.mark(TAILLE_TAMPON);
-                contenuFichier.reset();
+//                contenuFichier.mark(TAILLE_TAMPON);
+//                contenuFichier.reset();
                 /* Extraction du type MIME du fichier depuis l'InputStream */
                 MimeUtil.registerMimeDetector( "eu.medsea.mimeutil.detector.MagicMimeMimeDetector" );
                 Collection<?> mimeTypes = MimeUtil.getMimeTypes( contenuFichier );

@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Image extends HttpServlet {
-    public static final int TAILLE_TAMPON = 10240; // 10ko
+	private static final long serialVersionUID = -6886474587299624519L;
+	public static final int TAILLE_TAMPON = 10240; // 10ko
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         /*

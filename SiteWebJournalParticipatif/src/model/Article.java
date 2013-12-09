@@ -3,36 +3,47 @@ package model;
 import java.sql.Date;
 
 public class Article{
+	private int idArticle;
 	private int idUtilisateur;
-	private Date date;
-	private String ville;
-	private String rubrique;
-	private String text;
-
-	public Article(int idUtilisateur, Date date, String ville, String rubrique,
-			String text) {
+	private Date datePublie;
+	private String localisation;
+	private String categorie;
+	private String titre;
+	private String textArticle;
+	
+	public Article() {
 		super();
+	}
+
+	public Article(int idArticle, int idUtilisateur, Date datePublie,
+			String localisation, String categorie, String titre,
+			String textArticle) {
+		super();
+		this.idArticle = idArticle;
 		this.idUtilisateur = idUtilisateur;
-		this.date = date;
-		this.ville = ville;
-		this.rubrique = rubrique;
-		this.text = text;
+		this.datePublie = datePublie;
+		this.localisation = localisation;
+		this.categorie = categorie;
+		this.titre = titre;
+		this.textArticle = textArticle;
 	}
 
-	public String getText() {
-		return text;
+	public Article(int idArticle, int idUtilisateur, Date datePublie,
+			String localisation, String textArticle) {
+		super();
+		this.idArticle = idArticle;
+		this.idUtilisateur = idUtilisateur;
+		this.datePublie = datePublie;
+		this.localisation = localisation;
+		this.textArticle = textArticle;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public int getIdArticle() {
+		return idArticle;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
 	}
 
 	public int getIdUtilisateur() {
@@ -43,21 +54,45 @@ public class Article{
 		this.idUtilisateur = idUtilisateur;
 	}
 
-	public String getVille() {
-		return ville;
+	public Date getDatePublie() {
+		return datePublie;
 	}
 
-	public void setVille(String ville) {
-		this.ville = ville;
+	public void setDatePublie(Date datePublie) {
+		this.datePublie = datePublie;
 	}
 
-	public String getRubrique() {
-		return rubrique;
+	public String getLocalisation() {
+		return localisation;
 	}
 
-	public void setRubrique(String rubrique) {
-		this.rubrique = rubrique;
+	public void setLocalisation(String localisation) {
+		this.localisation = localisation;
 	}
-	
+
+	public String getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public String getTextArticle() {
+		return textArticle;
+	}
+
+	public void setTextArticle(String textArticle) {
+		this.textArticle = textArticle;
+	}
+
 	
 }

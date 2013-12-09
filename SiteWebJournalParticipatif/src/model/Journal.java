@@ -7,7 +7,7 @@ public class Journal {
 	private String name;
 	private int numberFollowers;
 	private ArrayList<Article> listArticle = new ArrayList<Article>();
-	private ArrayList<Utilisateur> listAbonne = new ArrayList<Utilisateur>();
+	private ArrayList<User> listAbonne = new ArrayList<User>();
 	
 	public Journal(int idUtilisateur, String name, int numberFollowers) {
 		super();
@@ -48,11 +48,11 @@ public class Journal {
 		this.idUtilisateur = idUtilisateur;
 	}
 
-	public ArrayList<Utilisateur> getListAbonne() {
+	public ArrayList<User> getListAbonne() {
 		return listAbonne;
 	}
 
-	public void setListAbonne(ArrayList<Utilisateur> listAbonne) {
+	public void setListAbonne(ArrayList<User> listAbonne) {
 		this.listAbonne = listAbonne;
 	}
 	

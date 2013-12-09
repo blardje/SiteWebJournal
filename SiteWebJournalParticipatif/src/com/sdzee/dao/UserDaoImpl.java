@@ -16,7 +16,7 @@ public class UserDaoImpl implements UserDAO {
 
     private static final String SQL_SELECT        = "SELECT pwd, name, Address, telephone, email FROM user ORDER BY id";
     private static final String SQL_SELECT_PAR_ID = "SELECT pwd, name, Address, telephone, email  FROM user WHERE id = ?";
-    private static final String SQL_INSERT        = "INSERT INTO user(fyname, ftname, address, telephone, email, pwd, inscription_date) VALUES (?, ?, ?, ?,?,'0000','2013-11-22 18:05:26' )";
+    private static final String SQL_INSERT        = "INSERT INTO user(fyname, ftname, address, telephone, email, pwd, inscription_date, Image) VALUES (?, ?, ?, ?,?,?,?,? )";
  
 
     private DAOFactory          daoFactory;
@@ -44,7 +44,8 @@ public class UserDaoImpl implements UserDAO {
             preparedStatement = initialisationRequetePreparee( connexion, SQL_INSERT, true,
             		user.getFyName(), user.getFtName(),
             		user.getAddress(), user.getTelephone(),
-            		user.getEmail());
+            		user.getEmail(), "password",
+            		user.getDateInscription(), user.getImage());
             int statut = preparedStatement.executeUpdate();
             if ( statut == 0 ) {
                 throw new DAOException( "Échec de la création du user, aucune ligne ajoutée dans la table." );
@@ -147,6 +148,7 @@ public class UserDaoImpl implements UserDAO {
      * un bean user.
      */
     private static User map( ResultSet resultSet ) throws SQLException {
+    	
         User user= new User();
         user.setId( resultSet.getLong( "id" ) );
         user.setFyName( resultSet.getString( "nom" ) );
@@ -154,6 +156,7 @@ public class UserDaoImpl implements UserDAO {
         user.setAddress( resultSet.getString( "address" ) );
         user.setTelephone( resultSet.getString( "telephone" ) );
         user.setEmail( resultSet.getString( "email" ) );
+        user.setImage( resultSet.getString( "image" ) );
       
         return user;
     }

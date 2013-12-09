@@ -16,30 +16,30 @@ import com.sdzee.dao.DAOFactory;
 import com.sdzee.forms.InscriptionForm;
 
 public class InscriptionServlet extends HttpServlet {
-    /* Constantes */
-    public static final String CHAMP_NOM       = "nomUser";
-    public static final String CHAMP_PRENOM    = "prenomUser";
-    public static final String CHAMP_ADRESSE   = "adresseUser";
-    public static final String CHAMP_TELEPHONE = "telephoneUser";
-    public static final String CHAMP_EMAIL     = "emailUser";
+	
+	private static final long serialVersionUID = -2670558772180355243L;
+	/* Constantes */
+//    public static final String CHAMP_NOM       = "nomUser";
+//    public static final String CHAMP_PRENOM    = "prenomUser";
+//    public static final String CHAMP_ADRESSE   = "adresseUser";
+//    public static final String CHAMP_TELEPHONE = "telephoneUser";
+//    public static final String CHAMP_EMAIL     = "emailUser";
+//    public static final String CHAMP_IMAGE     = "imageUser";
     public static final String ATT_CLIENT      = "user";
     public static final String ATT_FORM        = "form";
     public static final String SESSION_USERS = "users";
 
     public static final String VUE_SUCCES      = "/viewUser.jsp";
     public static final String VUE_FORM        = "/usr_Inscription.jsp";
-    public static final String ATT_MESSAGE     = "message";
-    public static final String ATT_ERREUR      = "erreur";
- 
-    public static final String VUE             = "/viewUser.jsp";
     
+//    public static final String ATT_MESSAGE     = "message";
+//    public static final String ATT_ERREUR      = "erreur";
+//    public static final String VUE             = "/viewUser.jsp";
     
     public static final String CONF_DAO_FACTORY = "daofactory";
     public static final String CHEMIN           = "chemin";
 
-
     private UserDAO          userDao;
-
     
     public void init() throws ServletException {
         /* Récupération d'une instance de notre DAO Utilisateur */
@@ -49,47 +49,50 @@ public class InscriptionServlet extends HttpServlet {
     
     
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        /*
-         * Récupération des données saisies, envoyées en tant que paramètres de
-         * la requête GET générée à la validation du formulaire
-         */
-        String nom = request.getParameter( CHAMP_NOM );
-        String prenom = request.getParameter( CHAMP_PRENOM );
-        String adresse = request.getParameter( CHAMP_ADRESSE );
-        String telephone = request.getParameter( CHAMP_TELEPHONE );
-        String email = request.getParameter( CHAMP_EMAIL );
-
-        String message;
-        boolean erreur;
-        /*
-         * Initialisation du message à afficher : si un des champs obligatoires
-         * du formulaire n'est pas renseigné, alors on affiche un message
-         * d'erreur, sinon on affiche un message de succès
-         */
-        if ( nom.trim().isEmpty() || adresse.trim().isEmpty() || telephone.trim().isEmpty() ) {
-            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a href=\"creerClient.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un client.";
-            erreur = true;
-        } else {
-            message = "Client créé avec succès !";
-            erreur = false;
-        }
-        /*
-         * Création du bean Client et initialisation avec les données récupérées
-         */
-        User user = new User();
-        user.setFyName( nom );
-        user.setFtname( prenom );
-        user.setAddress( adresse );
-        user.setTelephone( telephone );
-        user.setEmail( email );
-
-        /* Ajout du bean et du message à l'objet requête */
-        request.setAttribute( ATT_CLIENT, user );
-        request.setAttribute( ATT_MESSAGE, message );
-        request.setAttribute( ATT_ERREUR, erreur );
-
-        /* Transmission à la page JSP en charge de l'affichage des données */
-        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+//        /*
+//         * Récupération des données saisies, envoyées en tant que paramètres de
+//         * la requête GET générée à la validation du formulaire
+//         */
+//        String nom = request.getParameter( CHAMP_NOM );
+//        String prenom = request.getParameter( CHAMP_PRENOM );
+//        String adresse = request.getParameter( CHAMP_ADRESSE );
+//        String telephone = request.getParameter( CHAMP_TELEPHONE );
+//        String email = request.getParameter( CHAMP_EMAIL );
+//        String image = request.getParameter( CHAMP_EMAIL );
+//
+//
+//        String message;
+//        boolean erreur;
+//        /*
+//         * Initialisation du message à afficher : si un des champs obligatoires
+//         * du formulaire n'est pas renseigné, alors on affiche un message
+//         * d'erreur, sinon on affiche un message de succès
+//         */
+//        if ( nom.trim().isEmpty() || adresse.trim().isEmpty() || telephone.trim().isEmpty() ) {
+//            message = "Erreur - Vous n'avez pas rempli tous les champs obligatoires. <br> <a href=\"creerClient.jsp\">Cliquez ici</a> pour accéder au formulaire de création d'un client.";
+//            erreur = true;
+//        } else {
+//            message = "Client créé avec succès !";
+//            erreur = false;
+//        }
+//        /*
+//         * Création du bean Client et initialisation avec les données récupérées
+//         */
+//        User user = new User();
+//        user.setFyName( nom );
+//        user.setFtname( prenom );
+//        user.setAddress( adresse );
+//        user.setTelephone( telephone );
+//        user.setEmail( email );
+//        user.setImage( image );
+//
+//        /* Ajout du bean et du message à l'objet requête */
+//        request.setAttribute( ATT_CLIENT, user );
+//        request.setAttribute( ATT_MESSAGE, message );
+//        request.setAttribute( ATT_ERREUR, erreur );
+//
+//        /* Transmission à la page JSP en charge de l'affichage des données */
+//        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
     }
     
     public void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
@@ -113,7 +116,7 @@ public class InscriptionServlet extends HttpServlet {
         if ( form.getErreurs().isEmpty() ) {
             /* Alors récupération de la map des clients dans la session */
             HttpSession session = request.getSession();
-            Map<Long, User> users = (HashMap<Long, User>) session.getAttribute( SESSION_USERS );
+			Map<Long, User> users = (HashMap<Long, User>) session.getAttribute( SESSION_USERS );
             /* Si aucune map n'existe, alors initialisation d'une nouvelle map */
             if ( users == null ) {
                 users = new HashMap<Long, User>();
