@@ -1,11 +1,14 @@
-package model;
+package com.sdzee.beans;
 
-import java.sql.Date;
+import java.io.Serializable;
+import java.sql.Timestamp;
 
-public class Article{
-	private int idArticle;
-	private int idUtilisateur;
-	private Date datePublie;
+public class Article implements Serializable{
+	private static final long serialVersionUID = 6304123991404658140L;
+	
+	private Long idArticle;
+	private Long idUtilisateur;
+	private Timestamp datePublie;
 	private String localisation;
 	private String categorie;
 	private String titre;
@@ -15,7 +18,7 @@ public class Article{
 		super();
 	}
 
-	public Article(int idArticle, int idUtilisateur, Date datePublie,
+	public Article(Long idArticle, Long idUtilisateur,Timestamp datePublie,
 			String localisation, String categorie, String titre,
 			String textArticle) {
 		super();
@@ -28,7 +31,7 @@ public class Article{
 		this.textArticle = textArticle;
 	}
 
-	public Article(int idArticle, int idUtilisateur, Date datePublie,
+	public Article(Long idArticle, Long idUtilisateur, Timestamp datePublie,
 			String localisation, String textArticle) {
 		super();
 		this.idArticle = idArticle;
@@ -38,27 +41,27 @@ public class Article{
 		this.textArticle = textArticle;
 	}
 
-	public int getIdArticle() {
+	public Long getIdArticle() {
 		return idArticle;
 	}
 
-	public void setIdArticle(int idArticle) {
+	public void setIdArticle(Long idArticle) {
 		this.idArticle = idArticle;
 	}
 
-	public int getIdUtilisateur() {
+	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
 
-	public void setIdUtilisateur(int idUtilisateur) {
+	public void setIdUtilisateur(Long idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
 
-	public Date getDatePublie() {
+	public Timestamp getDatePublie() {
 		return datePublie;
 	}
 
-	public void setDatePublie(Date datePublie) {
+	public void setDatePublie(Timestamp datePublie) {
 		this.datePublie = datePublie;
 	}
 

@@ -14,9 +14,10 @@ import com.sdzee.beans.User;
 
 public class UserDaoImpl implements UserDAO {
 
-    private static final String SQL_SELECT        = "SELECT pwd, name, Address, telephone, email FROM user ORDER BY id";
-    private static final String SQL_SELECT_PAR_ID = "SELECT pwd, name, Address, telephone, email  FROM user WHERE id = ?";
-    private static final String SQL_INSERT        = "INSERT INTO user(fyname, ftname, address, telephone, email, pwd, inscription_date, Image) VALUES (?, ?, ?, ?,?,?,?,? )";
+    private static final String SQL_SELECT        = "SELECT id, fyname, ftname, address, telephone, email, pwd, inscription_date, Image FROM user ORDER BY id";
+    private static final String SQL_SELECT_PAR_ID = "SELECT id, fyname, ftname, address, telephone, email, pwd, inscription_date, Image  FROM user WHERE id = ?";
+    private static final String SQL_SELECT_PAR_EMAIL = "SELECT id, fyname, ftname, address, telephone, email, pwd, inscription_date, Image  FROM user WHERE email = ?";
+    private static final String SQL_INSERT        = "INSERT INTO user(fyname, ftname, address, telephone, email, pwd, inscription_date, Image) VALUES (?, ?, ?, ?, ?, ?, ?, ? )";
  
 
     private DAOFactory          daoFactory;
@@ -33,6 +34,12 @@ public class UserDaoImpl implements UserDAO {
 
     /* Implémentation de la méthode définie dans l'interface userDao */
     @Override
+    public User trouver( String email ) throws DAOException {
+        return trouver( SQL_SELECT_PAR_EMAIL, email );
+    }
+
+    /* Implémentation de la méthode définie dans l'interface userDao */
+    @Override
     public void creer( User user ) throws DAOException {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
@@ -44,7 +51,7 @@ public class UserDaoImpl implements UserDAO {
             preparedStatement = initialisationRequetePreparee( connexion, SQL_INSERT, true,
             		user.getFyName(), user.getFtName(),
             		user.getAddress(), user.getTelephone(),
-            		user.getEmail(), "password",
+            		user.getEmail(), user.getPassword(),
             		user.getDateInscription(), user.getImage());
             int statut = preparedStatement.executeUpdate();
             if ( statut == 0 ) {
@@ -109,6 +116,28 @@ public class UserDaoImpl implements UserDAO {
         }*/
     }
 
+    /* Implémentation de la méthode définie dans l'interface userDao */
+    @Override
+    public void supprimer( long id ) throws DAOException {
+      /*  Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connexion, SQL_DELETE_PAR_ID, true, user.getId() );
+            int statut = preparedStatement.executeUpdate();
+            if ( statut == 0 ) {
+                throw new DAOException( "Échec de la suppression du user, aucune ligne supprimée de la table." );
+            } else {
+                user.setId( null );
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( preparedStatement, connexion );
+        }*/
+    }
+
     /*
      * Méthode générique utilisée pour retourner un Userdepuis la base de
      * données, correspondant à la requête SQL donnée prenant en paramètres les
@@ -151,12 +180,14 @@ public class UserDaoImpl implements UserDAO {
     	
         User user= new User();
         user.setId( resultSet.getLong( "id" ) );
-        user.setFyName( resultSet.getString( "nom" ) );
-        user.setFtname( resultSet.getString( "prenom" ) );
+        user.setFyName( resultSet.getString( "fyname" ) );
+        user.setFtname( resultSet.getString( "ftname" ) );
         user.setAddress( resultSet.getString( "address" ) );
         user.setTelephone( resultSet.getString( "telephone" ) );
         user.setEmail( resultSet.getString( "email" ) );
         user.setImage( resultSet.getString( "image" ) );
+        user.setPassword( resultSet.getString("pwd"));
+        user.setDateInscription(resultSet.getTimestamp("inscription_date"));
       
         return user;
     }

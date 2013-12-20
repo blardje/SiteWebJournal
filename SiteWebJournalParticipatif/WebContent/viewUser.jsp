@@ -7,14 +7,13 @@
         <title>Affichage d'un utilisateur</title>
     </head>
     <body>
-        <c:import url="/Index.jsp" />
         <div id="corps">
             <p class="info">${ message }</p>
         <c:if test="${ !erreur }"> 
      
                 <p>Nom : <c:out value="${ user.getFyName() }"/></p>
                 <p>Prénom : <c:out value="${ user.getFtName() }"/></p>
-              <P>Adresse : <c:out value="${ user.getAddress() }"/></P> 
+                <P>Adresse : <c:out value="${ user.getAddress() }"/></P> 
                 <P>Numéro de téléphone : <c:out value="${ user.getTelephone() }"/></P>
                 <P>Email : <c:out value="${ user.getEmail() }"/></P> 
                 <p>Image : <c:out value="${ user.image }"/></p>

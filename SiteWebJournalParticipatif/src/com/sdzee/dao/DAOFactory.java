@@ -20,7 +20,9 @@ public class DAOFactory {
     private String              username;
     private String              password;
 
-    /* package */DAOFactory( String url, String username, String password ) {
+    /* package */
+    DAOFactory( String url, String username, String password ) {
+        super();
         this.url = url;
         this.username = username;
         this.password = password;
@@ -78,5 +80,9 @@ public class DAOFactory {
     public UserDAO getUserDao() {
         return new UserDaoImpl( this );
     }
+
+	public ArticleDAO getArticleDao() {
+		return new ArticleDaoImpl( this );
+	}
 
 }

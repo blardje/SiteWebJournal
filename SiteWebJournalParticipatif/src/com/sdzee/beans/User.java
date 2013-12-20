@@ -14,16 +14,21 @@ public class User implements Serializable{
 	private String email;
 	private Timestamp dateInscription;
 	private String image;
+	private String password;
 	
-    public Long getId() {
+	
+    public User() {
+		super();
+	}
+
+	public Long getId() {
         return id;
         
     }
-    
         
-        public Timestamp getDateInscription() {
-            return dateInscription;
-        }
+    public Timestamp getDateInscription() {
+        return dateInscription;
+    }
 	
 	public String getFyName() {
 		return this.fyname;
@@ -80,6 +85,27 @@ public class User implements Serializable{
     public void setImage( String image ) {
         this.image = image;
     }
+
+	public String getFyname() {
+		return fyname;
+	}
+
+	public void setFyname(String fyname) {
+		this.fyname = fyname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getFtname() {
+		return ftname;
+	}
+    
 }
 
 

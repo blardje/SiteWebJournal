@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Votre journal</title>
+<title>Journal participatif</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/connecte.css">
 </head>
@@ -166,7 +166,9 @@
 	</div>
 
 	<footer id='footer'> <c:import url="/PagePart/footer.jsp" />
-	</footer> </article>
+	</footer> 
+	
+	</article>
 	<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>-->
 	<script

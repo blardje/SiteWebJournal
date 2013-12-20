@@ -24,6 +24,7 @@ import eu.medsea.mimeutil.MimeUtil;
 public final class InscriptionForm {
     private static final String CHAMP_NOM       = "nomUser";
     private static final String CHAMP_PRENOM    = "prenomUser";
+    private static final String CHAMP_PASSWORD  = "password";
     private static final String CHAMP_ADRESSE   = "adresseUser";
     private static final String CHAMP_TELEPHONE = "telephoneUser";
     private static final String CHAMP_EMAIL     = "emailUser";
@@ -33,6 +34,7 @@ public final class InscriptionForm {
 
     private String              resultat;
     private Map<String, String> erreurs         = new HashMap<String, String>();
+    
     private UserDAO           userDao;
 
     public InscriptionForm( UserDAO userDAO ) {
@@ -50,6 +52,7 @@ public final class InscriptionForm {
     public User creerUser( HttpServletRequest request, String chemin ) {
         String nom = getValeurChamp( request, CHAMP_NOM );
         String prenom = getValeurChamp( request, CHAMP_PRENOM );
+        String password = getValeurChamp( request, CHAMP_PASSWORD );
         String adresse = getValeurChamp( request, CHAMP_ADRESSE );
         String telephone = getValeurChamp( request, CHAMP_TELEPHONE );
         String email = getValeurChamp( request, CHAMP_EMAIL );
@@ -59,9 +62,8 @@ public final class InscriptionForm {
 
         traiterNom( nom, user );
         traiterPrenom( prenom, user );
+        traiterPassword( password, user );
         traiterAdresse( adresse, user );
-        
-        
         traiterTelephone( telephone, user );
         traiterEmail( email, user );
         traiterImage( user, request, chemin );
@@ -73,6 +75,7 @@ public final class InscriptionForm {
             if ( erreurs.isEmpty() ) {
                 userDao.creer( user );
                 resultat = "Succès de la création du client.";
+                
             } else {
                 resultat = "Échec de la création du client.";
             }
@@ -90,6 +93,7 @@ public final class InscriptionForm {
             validationNom( nom );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_NOM, e.getMessage() );
+            System.out.println(e.getMessage());
         }
         user.setFyName( nom );
     }
@@ -99,8 +103,19 @@ public final class InscriptionForm {
             validationPrenom( prenom );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_PRENOM, e.getMessage() );
+            System.out.println(e.getMessage());
         }
         user.setFtname( prenom );
+    }
+
+    private void traiterPassword( String password, User user ) {
+        try {
+            validationPassword( password );
+        } catch ( FormValidationException e ) {
+            setErreur( CHAMP_PASSWORD, e.getMessage() );
+            System.out.println(e.getMessage());
+        }
+        user.setPassword( password );
     }
 
     private void traiterAdresse( String adresse, User user ) {
@@ -108,6 +123,7 @@ public final class InscriptionForm {
             validationAdresse( adresse );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_ADRESSE, e.getMessage() );
+            System.out.println(e.getMessage());
         }
         user.setAddress( adresse );
     }
@@ -117,6 +133,7 @@ public final class InscriptionForm {
             validationTelephone( telephone );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_TELEPHONE, e.getMessage() );
+            System.out.println(e.getMessage());
         }
         user.setTelephone( telephone );
     }
@@ -126,6 +143,7 @@ public final class InscriptionForm {
             validationEmail( email );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_EMAIL, e.getMessage() );
+            System.out.println(e.getMessage());
         }
         user.setEmail( email );
     }
@@ -136,6 +154,7 @@ public final class InscriptionForm {
             image = validationImage( request, chemin );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_IMAGE, e.getMessage() );
+            System.out.println(e.getMessage());
         }
         user.setImage( image );
     }
@@ -156,26 +175,30 @@ public final class InscriptionForm {
         }
     }
 
-    private void validationAdresse( String adresse ) throws FormValidationException {
-        if ( adresse != null ) {
-            if ( adresse.length() < 2 ) {
-                throw new FormValidationException( "L'adresse doit contenir au moins 10 caractères." );
-            }
+    private void validationPassword( String password ) throws FormValidationException {
+        if ( password != null ) {
+	        if ( password != null && password.length() < 2 ) {
+	            throw new FormValidationException( "Le mot de passe doit contenir au moins 2 caractères." );
+	        }
         } else {
-            throw new FormValidationException( "Merci d'entrer une adresse." );
+            throw new FormValidationException( "Merci d'entrer un mot de passe" );
         }
     }
 
-    private void validationTelephone( String telephone ) throws FormValidationException {
-        if ( telephone != null ) {
-            if ( !telephone.matches( "^\\d+$" ) ) {
-                throw new FormValidationException( "Le numéro de téléphone doit uniquement contenir des chiffres." );
-            } else if ( telephone.length() < 4 ) {
-                throw new FormValidationException( "Le numéro de téléphone doit contenir au moins 4 chiffres." );
+    private void validationAdresse( String adresse ) throws FormValidationException {
+            if (adresse != null && adresse.length() < 2 ) {
+                throw new FormValidationException( "L'adresse doit contenir au moins 10 caractères." );
             }
-        } else {
-            throw new FormValidationException( "Merci d'entrer un numéro de téléphone." );
-        }
+    }
+
+    private void validationTelephone( String telephone ) throws FormValidationException {
+    	if (telephone != null) {
+	        if ( !telephone.matches( "^\\d+$" ) ) {
+	            throw new FormValidationException( "Le numéro de téléphone doit uniquement contenir des chiffres." );
+	        } else if ( telephone.length() < 2 ) {
+	            throw new FormValidationException( "Le numéro de téléphone doit contenir au moins 2 chiffres." );
+	        }
+		}
     }
 
     private void validationEmail( String email ) throws FormValidationException {
@@ -194,7 +217,10 @@ public final class InscriptionForm {
         InputStream contenuFichier = null;
         try {
             Part part = request.getPart( CHAMP_IMAGE );
-            nomFichier = getNomFichier( part );
+            if (part != null) {
+            	nomFichier = getNomFichier( part );
+			}
+            
 
             /*
              * Si la méthode getNomFichier() a renvoyé quelque chose, il s'agit
