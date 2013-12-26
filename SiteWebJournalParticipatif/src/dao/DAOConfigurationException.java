@@ -1,4 +1,4 @@
-package com.sdzee.dao;
+package dao;
 
 public class DAOConfigurationException extends RuntimeException {
 	private static final long serialVersionUID = -2972809858332730767L;

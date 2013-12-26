@@ -1,4 +1,4 @@
-package com.sdzee.forms;
+package forms;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -6,9 +6,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.sdzee.beans.Article;
-import com.sdzee.dao.ArticleDAO;
-import com.sdzee.dao.DAOException;
+import beans.Article;
+
+import dao.ArticleDAO;
+import dao.DAOException;
 
 public class DepotArticleForm {
 	private static final String CHAMP_LOCALISATION  = "localisation";

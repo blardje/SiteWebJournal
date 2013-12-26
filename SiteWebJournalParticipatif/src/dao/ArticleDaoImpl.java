@@ -1,7 +1,7 @@
-package com.sdzee.dao;
+package dao;
 
-import static com.sdzee.dao.DAOUtilities.fermeturesSilencieuses;
-import static com.sdzee.dao.DAOUtilities.initialisationRequetePreparee;
+import static dao.DAOUtilities.fermeturesSilencieuses;
+import static dao.DAOUtilities.initialisationRequetePreparee;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sdzee.beans.Article;
+import beans.Article;
 
 public class ArticleDaoImpl implements ArticleDAO {
 	private static final String SQL_SELECT        = "SELECT idArticle, idUtilisateur, datePublie, localisation, categorie, titre, textArticle FROM article ORDER BY idArticle";

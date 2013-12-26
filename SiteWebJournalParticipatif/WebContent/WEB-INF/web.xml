@@ -10,13 +10,13 @@
   </filter-mapping>
   
   <listener>
-    <listener-class>com.sdzee.config.InitialisationDaoFactory</listener-class>
+    <listener-class>config.InitialisationDaoFactory</listener-class>
     <load-on-startup>1</load-on-startup>
   </listener>
   
   <servlet>
     <servlet-name>InscriptionServlet</servlet-name>
-    <servlet-class>com.sdzee.servlets.InscriptionServlet</servlet-class>
+    <servlet-class>servlets.InscriptionServlet</servlet-class>
     <init-param>
       <param-name>chemin</param-name>
       <param-value>c:/fichiers/images/</param-value>
@@ -32,7 +32,7 @@
   
   <servlet>
     <servlet-name>Image</servlet-name>
-    <servlet-class>com.sdzee.servlets.Image</servlet-class>
+    <servlet-class>servlets.Image</servlet-class>
     <init-param>
       <param-name>chemin</param-name>
       <param-value>c:/fichiers/images/</param-value>
@@ -42,19 +42,19 @@
   
   <servlet>
     <servlet-name>ConnexionServlet</servlet-name>
-    <servlet-class>com.sdzee.servlets.ConnexionServlet</servlet-class>
+    <servlet-class>servlets.ConnexionServlet</servlet-class>
     <load-on-startup>4</load-on-startup>
   </servlet>
   
   <servlet>
     <servlet-name>FluxArticlesServlet</servlet-name>
-    <servlet-class>com.sdzee.servlets.FluxArticlesServlet</servlet-class>
+    <servlet-class>servlets.FluxArticlesServlet</servlet-class>
     <load-on-startup>5</load-on-startup>
   </servlet>
   
   <servlet>
     <servlet-name>DepotArticleServlet</servlet-name>
-    <servlet-class>com.sdzee.servlets.DepotArticleServlet</servlet-class>
+    <servlet-class>servlets.DepotArticleServlet</servlet-class>
     <load-on-startup>6</load-on-startup>
   </servlet>
   

@@ -1,8 +1,8 @@
-package com.sdzee.dao;
+package dao;
 
 import java.util.List;
 
-import com.sdzee.beans.Article;
+import beans.Article;
 
 public interface ArticleDAO {
 	void creer(Article article) throws DAOException;

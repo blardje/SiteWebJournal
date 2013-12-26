@@ -1,8 +1,8 @@
-package com.sdzee.dao;
+package dao;
 
 import java.util.List;
 
-import com.sdzee.beans.User;
+import beans.User;
 
 public interface UserDAO {
     void creer( User client ) throws DAOException;

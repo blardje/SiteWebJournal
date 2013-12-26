@@ -1,12 +1,13 @@
-package com.sdzee.forms;
+package forms;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.sdzee.beans.User;
-import com.sdzee.dao.UserDAO;
+import beans.User;
+
+import dao.UserDAO;
 
 public final class ConnexionForm {
     private static final String CHAMP_EMAIL  = "emailInscrit";

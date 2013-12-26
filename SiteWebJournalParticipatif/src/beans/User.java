@@ -1,4 +1,4 @@
-package com.sdzee.beans;
+package beans;
 
 import java.io.Serializable;
 import java.sql.Timestamp;

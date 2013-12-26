@@ -1,4 +1,4 @@
-package com.sdzee.servlets;
+package servlets;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,10 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sdzee.beans.User;
-import com.sdzee.dao.UserDAO;
-import com.sdzee.dao.DAOFactory;
-import com.sdzee.forms.InscriptionForm;
+import beans.User;
+
+
+import dao.DAOFactory;
+import dao.UserDAO;
+import forms.InscriptionForm;
 
 public class InscriptionServlet extends HttpServlet {
 	

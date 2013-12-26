@@ -1,4 +1,4 @@
-package com.sdzee.forms;
+package forms;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -15,9 +15,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
-import com.sdzee.beans.User;
-import com.sdzee.dao.UserDAO;
-import com.sdzee.dao.DAOException;
+import beans.User;
+
+import dao.DAOException;
+import dao.UserDAO;
 import eu.medsea.mimeutil.MimeUtil;
 
 
@@ -93,7 +94,6 @@ public final class InscriptionForm {
             validationNom( nom );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_NOM, e.getMessage() );
-            System.out.println(e.getMessage());
         }
         user.setFyName( nom );
     }
@@ -103,7 +103,6 @@ public final class InscriptionForm {
             validationPrenom( prenom );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_PRENOM, e.getMessage() );
-            System.out.println(e.getMessage());
         }
         user.setFtname( prenom );
     }
@@ -113,7 +112,6 @@ public final class InscriptionForm {
             validationPassword( password );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_PASSWORD, e.getMessage() );
-            System.out.println(e.getMessage());
         }
         user.setPassword( password );
     }
@@ -123,7 +121,6 @@ public final class InscriptionForm {
             validationAdresse( adresse );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_ADRESSE, e.getMessage() );
-            System.out.println(e.getMessage());
         }
         user.setAddress( adresse );
     }
@@ -133,7 +130,6 @@ public final class InscriptionForm {
             validationTelephone( telephone );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_TELEPHONE, e.getMessage() );
-            System.out.println(e.getMessage());
         }
         user.setTelephone( telephone );
     }
@@ -143,7 +139,6 @@ public final class InscriptionForm {
             validationEmail( email );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_EMAIL, e.getMessage() );
-            System.out.println(e.getMessage());
         }
         user.setEmail( email );
     }
@@ -154,7 +149,6 @@ public final class InscriptionForm {
             image = validationImage( request, chemin );
         } catch ( FormValidationException e ) {
             setErreur( CHAMP_IMAGE, e.getMessage() );
-            System.out.println(e.getMessage());
         }
         user.setImage( image );
     }

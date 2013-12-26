@@ -1,4 +1,4 @@
-package com.sdzee.servlets;
+package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,9 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sdzee.beans.Article;
-import com.sdzee.dao.ArticleDAO;
-import com.sdzee.dao.DAOFactory;
+import beans.Article;
+
+import dao.ArticleDAO;
+import dao.DAOFactory;
 
 
 public class FluxArticlesServlet extends HttpServlet {

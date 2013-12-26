@@ -1,4 +1,4 @@
-package com.sdzee.servlets;
+package servlets;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

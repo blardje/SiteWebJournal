@@ -1,4 +1,4 @@
-package com.sdzee.forms;
+package forms;
 
 public class FormValidationException extends Exception {
 	private static final long serialVersionUID = -4524277784820208077L;
