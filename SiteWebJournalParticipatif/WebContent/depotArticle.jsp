@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8" ?>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
@@ -10,36 +9,43 @@
 		<title>Dépot d'un article</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/depotArticle.css">
+		<link rel="stylesheet" href="css/enTeteConnecte.css">
 	</head>
 
 <body>
+	<header id='header'> <c:import
+		url="/PagePart/enTeteConnecte.jsp" /> 
+	</header>
 
-    <article>
-       	<div id="depotArticleBox">
-    		<form action="<c:url value="/DepotArticle"/>" method="post" >
-    		
-				<input type="text" class="input" id="localisation" placeholder="Localisation" name="localisation" value="" size="30" maxlength="30"/>
-				<br />
-				
-				<input type="text" class="input" id="categorie" placeholder="Catégorie" name="categorie" value="" size="30" maxlength="30"/>
-				<br />
-				
-				<input type="text" class="input" id="titre" placeholder="Titre" name="titre" value="" size="60" maxlength="60"/>
-				<br />
-				
-				<textarea id="textArticle" name="textArticle" placeholder="Contenu de l'article" rows="5"></textarea>
-				<br />
-				
-<%--                 <p class="info">${ form.resultat }</p> --%>
-               	<input type="submit" value="Déposer l'article"  />
-               	
-           	</form>
-		</div>
+    <article id="realBody">
+    	<div id="contenu">
+	       	<div id="depotArticleBox">
+	    		<form action="<c:url value="/DepotArticle"/>" method="post" >
+	    		
+					<input type="text" class="input" id="localisation" placeholder="Localisation" name="localisation" value="" size="30" maxlength="30"/>
+					<br />
+					
+					<input type="text" class="input" id="categorie" placeholder="Catégorie" name="categorie" value="" size="30" maxlength="30"/>
+					<br />
+					
+					<input type="text" class="input" id="titre" placeholder="Titre" name="titre" value="" size="60" maxlength="60"/>
+					<br />
+					
+					<textarea id="textArticle" name="textArticle" placeholder="Contenu de l'article" rows="5"></textarea>
+					<br />
+					
+	<%--                 <p class="info">${ form.resultat }</p> --%>
+	               	<input type="submit" value="Déposer l'article"  />
+	               	
+	           	</form>
+			</div>
+    	</div>
+    	
+		<footer id='footer'> 
+			<c:import url="/PagePart/footer.jsp" />
+		</footer> 
+	
     </article>
-    
-	<footer id='footer'> 
-		<c:import url="/PagePart/footer.jsp" />
-	</footer> 
 	
 </body>
 </html>

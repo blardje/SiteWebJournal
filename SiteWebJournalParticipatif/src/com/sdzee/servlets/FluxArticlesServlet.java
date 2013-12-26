@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +33,12 @@ public class FluxArticlesServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		List<Article> articles = new ArrayList<Article>();
+		articles = articleDao.lister();
+		 
+        request.setAttribute( ATT_ARTICLES, articles );
+
+        this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	}
 
 	/**

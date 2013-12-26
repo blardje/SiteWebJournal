@@ -59,7 +59,6 @@ public class ConnexionServlet extends HttpServlet {
          * Utilisateur à la session, sinon suppression du bean de la session.
          */
         if ( form.getErreurs().isEmpty() ) {
-        	System.out.println("Liste d'erreurs vide");
             /* Récupération de la session depuis la requête */
             HttpSession session = request.getSession();
             
@@ -72,14 +71,10 @@ public class ConnexionServlet extends HttpServlet {
             users.put( user.getId(), user );
             /* Et enfin (ré)enregistrement de la map en session */
             session.setAttribute( SESSION_USERS, users );
-            
-            System.out.println("Set session user");
 
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-            System.out.println("Vue changé");
             
         } else {
-            System.out.println("VUE_FORM");
             this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
         }
     }

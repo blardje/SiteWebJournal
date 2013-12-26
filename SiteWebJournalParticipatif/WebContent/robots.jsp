@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /entravaux/
+Disallow: /test/
+Disallow: /PagePart/

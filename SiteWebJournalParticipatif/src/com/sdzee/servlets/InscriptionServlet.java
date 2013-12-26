@@ -79,7 +79,6 @@ public class InscriptionServlet extends HttpServlet {
 
             /* Affichage de la fiche récapitulative */
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-            System.out.println("Vue changé");
         } else {
             /* Sinon, ré-affichage du formulaire de création avec les erreurs */
             this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );

@@ -9,11 +9,13 @@
 <title>Journal participatif</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/connecte.css">
+	<link rel="stylesheet" href="css/enTeteConnecte.css">
 </head>
 
 <body>
 	<header id='header'> <c:import
-		url="/PagePart/enTeteConnecte.jsp" /> </header>
+		url="/PagePart/enTeteConnecte.jsp" /> 
+	</header>
 
 	<article id="realBody">
 

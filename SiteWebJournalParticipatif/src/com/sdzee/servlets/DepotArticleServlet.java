@@ -1,22 +1,16 @@
 package com.sdzee.servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.sdzee.beans.Article;
-import com.sdzee.beans.User;
 import com.sdzee.dao.ArticleDAO;
 import com.sdzee.dao.DAOFactory;
-import com.sdzee.forms.ConnexionForm;
 import com.sdzee.forms.DepotArticleForm;
-import com.sdzee.forms.InscriptionForm;
 
 public class DepotArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = -59853274827056980L;
@@ -55,7 +49,6 @@ public class DepotArticleServlet extends HttpServlet {
         if ( form.getErreurs().isEmpty() ) {
             /* Affichage de la fiche récapitulative */
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-            System.out.println("Vue changé");
         } else {
             /* Sinon, ré-affichage du formulaire de création avec les erreurs */
             this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );

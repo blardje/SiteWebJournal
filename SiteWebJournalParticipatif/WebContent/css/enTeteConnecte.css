@@ -1,0 +1,132 @@
+@charset "UTF-8";
+
+
+#logoJournal{
+    margin-left: 50px;
+    font-size: 25px;
+    color : #ff0000;
+}
+
+#pseudo{
+   /*margin-top: 10px;*/
+   float: right;
+   color: #777;
+   margin-top: 3px;
+}
+
+#deconnexionBox{
+	float: right;
+	margin-top: 7px;
+	margin-right: 10px;
+}
+
+#deconnexion{
+    background-image: url('../img/deconnexion.png');
+    width: 22px;
+    height: 22px;
+    display: block;
+    float: right;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+#deconnexion:hover{
+    background-image: url('../img/deconnexion2.png');
+}
+
+#recherche{
+    float: left;
+    width: 30%;
+    margin-top: 7px;
+    margin-left: 16px;
+}
+
+#rechercheInput{
+    color:#999999;
+    width: 90%;
+}
+
+.rechercheInput:hover{
+    color:#f00;
+}
+
+#rechercheIcon{
+    background-image: url('../img/recherche.png');
+    width: 22px;
+    height: 22px;
+    display: block;
+    float: right;
+    margin-left: 10px;
+}
+#rechercheIcon:hover{
+    background-image: url('../img/recherche2.png');
+}
+
+
+/* Gestion des onglets Bandeau du haut */
+#logoHome{
+    display: block;
+    float: left;
+    width: 30px;
+    height: 25px;
+    background-image: url('../img/home.jpg');
+    border-radius: 0.5em;
+    margin-top: -2px
+}
+
+#logoHome:hover{
+    display: block;
+    float: left;
+    width: 30px;
+    height: 25px;
+    background-image: url('../img/home2.jpg');
+    border-radius: 0.5em;
+    margin-top: -2px
+}
+
+#menuPrinicpal{
+    background-color: #111;  
+    height: 35px;
+    width: 100%;
+}
+
+#ongletsPrincipal
+{  
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 500;
+    line-height: 1.1;
+    width: 80%;
+    float: right;
+    margin-top: 0px;
+}
+
+#ongletsPrincipal .li
+{
+    margin-top: 10px;
+    float: left;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+#ongletsPrincipal a
+{
+    color:#777;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+#ongletsPrincipal .li.activePrincpal a
+{
+    color: #fff !important;
+}
+
+#ongletsPrincipal a:hover
+{
+    color: #fff;
+    border-bottom: 1px solid #ff0000;
+}
+
+#ongletsPrincipal .li.activePrincpal a:hover
+{
+    border-bottom: none;
+}
+/* Fin de gestion des onglets Bandeau du haut */
