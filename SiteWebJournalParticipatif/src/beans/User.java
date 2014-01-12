@@ -29,15 +29,7 @@ public class User implements Serializable{
     public Timestamp getDateInscription() {
         return dateInscription;
     }
-	
-	public String getFyName() {
-		return this.fyname;
-	}
-
-	public String getFtName() {
-		return this.ftname;
-	}
-	
+    
 	public String getAddress() {
 		return this.address;
 	}
@@ -87,7 +79,7 @@ public class User implements Serializable{
     }
 
 	public String getFyname() {
-		return fyname;
+		return this.fyname;
 	}
 
 	public void setFyname(String fyname) {
@@ -103,7 +95,7 @@ public class User implements Serializable{
 	}
 
 	public String getFtname() {
-		return ftname;
+		return this.ftname;
 	}
     
 }

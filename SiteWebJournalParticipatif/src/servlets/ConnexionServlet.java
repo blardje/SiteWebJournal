@@ -1,8 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +21,7 @@ public class ConnexionServlet extends HttpServlet {
 	/* Constantes */
     public static final String ATT_CLIENT      = "user";
     public static final String ATT_FORM        = "form";
-    public static final String SESSION_USERS     = "users";
+    public static final String ATT_SESSION_USER     = "sessionUser";
     
     public static final String CONF_DAO_FACTORY = "daofactory";
 	
@@ -55,24 +53,16 @@ public class ConnexionServlet extends HttpServlet {
         request.setAttribute( ATT_CLIENT, user );
         request.setAttribute( ATT_FORM, form );
         
+        /* Récupération de la session depuis la requête */
+        HttpSession session = request.getSession();
         
-        /**
-         * Si aucune erreur de validation n'a eu lieu, alors ajout du bean
-         * Utilisateur à la session, sinon suppression du bean de la session.
-         */
         if ( form.getErreurs().isEmpty() ) {
-            /* Récupération de la session depuis la requête */
-            HttpSession session = request.getSession();
             
-            Map<Long, User> users = (HashMap<Long, User>) session.getAttribute( SESSION_USERS );
-            /* Si aucune map n'existe, alors initialisation d'une nouvelle map */
-            if ( users == null ) {
-                users = new HashMap<Long, User>();
+            if ( form.getErreurs().isEmpty() ) {
+                session.setAttribute( ATT_SESSION_USER, user );
+            } else {
+                session.setAttribute( ATT_SESSION_USER, null );
             }
-            /* Puis ajout du client courant dans la map */
-            users.put( user.getId(), user );
-            /* Et enfin (ré)enregistrement de la map en session */
-            session.setAttribute( SESSION_USERS, users );
 
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
             

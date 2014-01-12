@@ -24,13 +24,15 @@
 	        	<div id="connectionBox">
 		    		<form action="<c:url value="/ConnexionUser"/>" method="post">
 						<input type="text" class="input" id="emailUserInscrit" placeholder="Email" name="emailInscrit" value="" size="30" maxlength="30"/>
+						<span class="erreur">${form.erreurs['emailUserInscrit']}</span>
 						<br />
 						
 						<input type="password" class="input" id="pwdUserInscrit" placeholder="Mot de passe" name="pwdInscrit" value="" size="30" maxlength="30"/>
+						<span class="erreur">${form.erreurs['pwdUserInscrit']}</span>
 						<br />
 						
-	<%--                 <p class="info">${ form.resultat }</p> --%>
 	                	<input type="submit" value="Se connecter"  />
+<%-- 	                	<p class="info">${ form.resultat }</p> --%>
 	            	</form>
 				</div>
 		    </div>
@@ -55,7 +57,7 @@
 	    </div>
     </article>
     
-	<footer id='footer'> <c:import url="/PagePart/footer.jsp" />
+	<footer id='footer'> <c:import url="/WEB-INF/PagePart/footer.jsp" />
 	
 	</footer> 
 	

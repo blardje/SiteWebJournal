@@ -10,13 +10,14 @@
 	        <input type="text" name="recherche" id="rechercheInput" value="Recherche" placeholder="Recherche"  />
 <!-- 	        <a href="#" id="rechercheIcon" name="rechercheIcon"></a> -->
 	     </div>
-         <div class="li"><a href="./mapRecherche.jsp">Map</a></div>
-         <div class="li"><a href="./depotArticle.jsp">Poster</a></div>
+         <div class="li"><a href="./MapRechercheServlet">Map</a></div>
+<!--          <div class="li"><a href="./restreint/depotArticle.jsp">Poster</a></div> -->
+         <div class="li"><a href="./AccessDepotArticle">Poster</a></div>
          <div class="li"><a href="#">Mon compte</a></div>
          <div class="li"><a href="#">Aide</a></div>
 	     <div id="deconnexionBox">
-	        <a href="#" id="deconnexion" name="Deconnexion"></a>
-	        <span id="pseudo">Mr. Martin</span>
+	        <a href="./DeconnexionUser" id="deconnexion" name="Deconnexion"></a>
+	        <span id="pseudo">${sessionScope.sessionUser.getFyname()}</span>
 	     </div>
      </div>
      

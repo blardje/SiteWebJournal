@@ -16,4 +16,6 @@ public interface ArticleDAO {
 	void supprimer( Article article ) throws DAOException;
 	
 	void supprimer( long id) throws DAOException;
+
+	List<Article> listerRubrique(int i) throws DAOException;
 }

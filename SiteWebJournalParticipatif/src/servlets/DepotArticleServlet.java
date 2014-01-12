@@ -21,7 +21,7 @@ public class DepotArticleServlet extends HttpServlet {
 	public static final String ATT_ARTICLE = "article";
     public static final String ATT_FORM        = "form";
     public static final String VUE = "/FluxArticles";
-    public static final String VUE_FORM = "/depotArticle.jsp";
+    public static final String VUE_FORM = "/WEB-INF/restreint/depotArticle.jsp";
     public static final String CONF_DAO_FACTORY = "daofactory";
     
     private ArticleDAO articleDao;

@@ -16,8 +16,19 @@ public class ArticleDaoImpl implements ArticleDAO {
 	private static final String SQL_SELECT        = "SELECT idArticle, idUtilisateur, datePublie, localisation, categorie, titre, textArticle FROM article ORDER BY idArticle";
     private static final String SQL_SELECT_PAR_ID = "SELECT idArticle, idUtilisateur, datePublie, localisation, categorie, titre, textArticle FROM article WHERE idArticle = ?";
     private static final String SQL_SELECT_PAR_IDUSER = "SELECT idArticle, idUtilisateur, datePublie, localisation, categorie, titre, textArticle FROM article WHERE idUtilisateur = ?";
+    private static final String SQL_SELECT_PAR_RUBRIQUE = "SELECT idArticle, idUtilisateur, datePublie, localisation, categorie, titre, textArticle FROM article WHERE categorie = ? ORDER BY datePublie DESC";
     private static final String SQL_INSERT        = "INSERT INTO article(idUtilisateur, datePublie, localisation, categorie, titre, textArticle) VALUES (?, ?, ?, ?, ?, ? )";
 	
+    private static final String[] RUBRIQUE = {
+    	"A la une", 
+    	"Politique", 
+    	"Economie",
+    	"Sport",
+    	"Culture",
+    	"Petites annonces",
+    	"Location/Achat"
+    	};
+
 
     private DAOFactory          daoFactory;
 
@@ -87,7 +98,29 @@ public class ArticleDaoImpl implements ArticleDAO {
 
         return articles;
 	}
-	
+
+	@Override
+	public List<Article> listerRubrique( int i) throws DAOException {
+		Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        List<Article> articles = new ArrayList<Article>();
+
+        try {
+            connection = daoFactory.getConnection();
+            preparedStatement = initialisationRequetePreparee( connection, SQL_SELECT_PAR_RUBRIQUE, false, RUBRIQUE[i] );
+            resultSet = preparedStatement.executeQuery();
+            while ( resultSet.next() ) {
+                articles.add( map( resultSet ) );
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            fermeturesSilencieuses( resultSet, preparedStatement, connection );
+        }
+
+        return articles;
+	}
 	@Override
 	public void supprimer(Article article) throws DAOException {
 		// TODO Auto-generated method stub
@@ -104,19 +137,19 @@ public class ArticleDaoImpl implements ArticleDAO {
      * objets passés en argument.
      */
     private Article trouver( String sql, Object... objets ) throws DAOException {
-        Connection connexion = null;
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         Article article = null;
 
         try {
             /* Récupération d'une connexion depuis la Factory */
-            connexion = daoFactory.getConnection();
+            connection = daoFactory.getConnection();
             /*
              * Préparation de la requête avec les objets passés en arguments
              * (ici, uniquement un id) et exécution.
              */
-            preparedStatement = initialisationRequetePreparee( connexion, sql, false, objets );
+            preparedStatement = initialisationRequetePreparee( connection, sql, false, objets );
             resultSet = preparedStatement.executeQuery();
             /* Parcours de la ligne de données retournée dans le ResultSet */
             if ( resultSet.next() ) {
@@ -125,7 +158,7 @@ public class ArticleDaoImpl implements ArticleDAO {
         } catch ( SQLException e ) {
             throw new DAOException( e );
         } finally {
-            fermeturesSilencieuses( resultSet, preparedStatement, connexion );
+            fermeturesSilencieuses( resultSet, preparedStatement, connection );
         }
 
         return article;

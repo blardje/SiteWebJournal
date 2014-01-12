@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDAO {
             connexion = daoFactory.getConnection();
            
             preparedStatement = initialisationRequetePreparee( connexion, SQL_INSERT, true,
-            		user.getFyName(), user.getFtName(),
+            		user.getFyname(), user.getFtname(),
             		user.getAddress(), user.getTelephone(),
             		user.getEmail(), user.getPassword(),
             		user.getDateInscription(), user.getImage());

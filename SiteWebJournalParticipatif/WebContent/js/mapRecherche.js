@@ -7,6 +7,7 @@ var geocoder;
 
 function initialize() {
     geocoder = new google.maps.Geocoder();
+    $("#adresseCentre").val("");
     
     /* Need internet */
     gmaps1();
@@ -40,27 +41,27 @@ function gmaps1() {
                 position: google.maps.ControlPosition.TOP_CENTER,
                 drawingModes: [
                     google.maps.drawing.OverlayType.CIRCLE,
-                    google.maps.drawing.OverlayType.RECTANGLE,
-                    google.maps.drawing.OverlayType.POLYGON
+//                    google.maps.drawing.OverlayType.RECTANGLE,
+//                    google.maps.drawing.OverlayType.POLYGON
                 ]
             },
             markerOptions: {
             },
             circleOptions: {
-                fillColor: '#333',
+                fillColor: '#933',
                 fillOpacity: 0.6,
                 strokeWeight: 2,
                 clickable: false,
                 editable: true,
                 zIndex: 1
             },
-            rectangleOptions: {
-                fillColor: '#333',
-                fillOpacity: 0.6,
-                strokeWeight: 2,
-                strokeColor: "#000",
-                editable: true
-            }
+//            rectangleOptions: {
+//                fillColor: '#333',
+//                fillOpacity: 0.6,
+//                strokeWeight: 2,
+//                strokeColor: "#000",
+//                editable: true
+//            }
         });
         drawingManager.setMap(map1);
 
@@ -72,48 +73,51 @@ function gmaps1() {
             shape = event.overlay;
             if (event.type === google.maps.drawing.OverlayType.CIRCLE) {
                 circle = event.overlay;
-                var radius = circle.getRadius() / 1000;
+                var radius = ~~ (circle.getRadius() / 1000);
                 var center = circle.getCenter();
                 var latitude = center.lat();
                 var longitude = center.lng();
                 
                 $("#latitude").text("Lat : " + latitude.toString());
                 $("#longitude").text("Long : " + longitude.toString());
-                $("#rayon").text("Rayon : " + radius.toString() + " Km");
+                $("#rangevalue").text(radius.toString());
+                $("#rayonCercle").val(radius);
                 
                 geocoder.geocode({
                     'latLng': center
                 }, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
-                        $("#lieu").text("Lieu : " + results[0].formatted_address);
+                        $("#adresseCentre").val(results[0].formatted_address);
                     } else {
                         alert('Geocoder failed due to: ' + status);
                     }
                 });
+            
+	            google.maps.event.addListener(circle, 'radius_changed', function() {
+	                radius = ~~ (circle.getRadius() / 1000);
+	                $("#rangevalue").text(radius.toString());
+	                $("#rayonCercle").val(radius);
+	            });
+	            
+	            google.maps.event.addListener(circle, 'center_changed', function() {
+	                center = circle.getCenter();
+	                latitude = center.lat();
+	                longitude = center.lng();
+	                $("#latitude").text("Lat : " + latitude.toString());
+	                $("#longitude").text("Long : " + longitude.toString());
+	                
+	                geocoder.geocode({
+	                    'latLng': center
+	                }, function (results, status) {
+	                    if (status == google.maps.GeocoderStatus.OK) {
+	                        $("#adresseCentre").val(results[0].formatted_address);
+	                    } else {
+	                        alert('Geocoder failed due to: ' + status);
+	                    }
+	                });
+	            });
+            
             }
-            
-            google.maps.event.addListener(circle, 'radius_changed', function() {
-                radius = circle.getRadius() / 1000;
-                $("#rayon").text("Rayon : " + radius.toString() + " Km");
-            });
-            
-            google.maps.event.addListener(circle, 'center_changed', function() {
-                center = circle.getCenter();
-                latitude = center.lat();
-                longitude = center.lng();
-                $("#latitude").text("Lat : " + latitude.toString());
-                $("#longitude").text("Long : " + longitude.toString());
-                
-                geocoder.geocode({
-                    'latLng': center
-                }, function (results, status) {
-                    if (status == google.maps.GeocoderStatus.OK) {
-                        $("#lieu").text("Lieu : " + results[0].formatted_address);
-                    } else {
-                        alert('Geocoder failed due to: ' + status);
-                    }
-                });
-            });
         });
 }
 

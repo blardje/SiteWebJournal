@@ -11,13 +11,14 @@ import javax.servlet.http.HttpSession;
 public class DeconnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = -8276398543267773244L;
 	
-	public static final String URL_REDIRECTION = "/accueil.jsp";
+	public static final String URL_REDIRECTION = "/FluxArticles";
 
     public void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         /* Récupération et destruction de la session en cours */
         HttpSession session = request.getSession();
         session.invalidate();
 
-        response.sendRedirect( URL_REDIRECTION );
+        this.getServletContext().getRequestDispatcher( URL_REDIRECTION ).forward( request, response );
+       
     }
 }

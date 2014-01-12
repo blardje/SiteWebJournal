@@ -24,8 +24,8 @@ public class InscriptionServlet extends HttpServlet {
     public static final String ATT_CLIENT      = "user";
     public static final String ATT_FORM        = "form";
     public static final String SESSION_USERS = "users";
+    public static final String ATT_SESSION_USER     = "sessionUser";
 
-    public static final String VUE_SUCCES      = "/viewUser.jsp";
     public static final String VUE_FORM        = "/accueil.jsp";
     public static final String VUE              = "/FluxArticles";
     
@@ -64,12 +64,15 @@ public class InscriptionServlet extends HttpServlet {
         /* Ajout du bean et de l'objet métier à l'objet requête */
         request.setAttribute( ATT_CLIENT, user );
         request.setAttribute( ATT_FORM, form );
-
+        
+        HttpSession session = request.getSession();
         /* Si aucune erreur */
         if ( form.getErreurs().isEmpty() ) {
             /* Alors récupération de la map des clients dans la session */
-            HttpSession session = request.getSession();
+        	
+			@SuppressWarnings("unchecked")
 			Map<Long, User> users = (HashMap<Long, User>) session.getAttribute( SESSION_USERS );
+			
             /* Si aucune map n'existe, alors initialisation d'une nouvelle map */
             if ( users == null ) {
                 users = new HashMap<Long, User>();
@@ -78,11 +81,13 @@ public class InscriptionServlet extends HttpServlet {
             users.put( user.getId(), user );
             /* Et enfin (ré)enregistrement de la map en session */
             session.setAttribute( SESSION_USERS, users );
-
+            session.setAttribute( ATT_SESSION_USER, user );
+            
             /* Affichage de la fiche récapitulative */
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
         } else {
             /* Sinon, ré-affichage du formulaire de création avec les erreurs */
+            session.setAttribute( ATT_SESSION_USER, null );
             this.getServletContext().getRequestDispatcher( VUE_FORM ).forward( request, response );
         }
     }

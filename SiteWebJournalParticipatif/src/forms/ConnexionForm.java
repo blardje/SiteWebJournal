@@ -35,7 +35,7 @@ public final class ConnexionForm {
         String email = getValeurChamp( request, CHAMP_EMAIL );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
         
-        User user = new User();
+        User user = null;
 
         /* Recherche si l'utilisateur est inscrit */
         try {

@@ -1,0 +1,79 @@
+@charset "UTF-8";
+
+#ongletJournal{
+	width: 100%;
+}
+
+#menu{
+    width: 85%;
+}
+
+#onglets
+{
+    font-size: 13px;
+    font-weight: bold;
+    list-style-type : none;
+    padding-bottom : 24px;
+    width: 100%;
+    margin-left: -40px;
+}
+
+#onglets li
+{
+    float : left;
+    height : 23px;
+    background-color: #444;
+    color : #fff;
+    margin : 2px 0px 0 0px !important;  /* Pour les navigateurs autre que IE */
+    margin : 1px 0px 0 0px;  /* Pour IE  */
+    text-align: center;
+    width: 16.2%;
+}
+
+#onglets li.active
+{
+    background-color: #fff;
+    height : 30px;
+    margin : -3px 0px 0 0px !important;  /* Pour les navigateurs autre que IE */
+    margin : -4px 0px 0 0px;  /* Pour IE  */
+    font-size: 13px;
+    border-top-left-radius : 5px;
+    border-top-right-radius : 5px;
+}
+
+#onglets li a
+{
+    padding-top: 3px;
+    font-family: "Beautiful";
+}
+
+#onglets a
+{
+    display : block;
+    color : #fff;
+    text-decoration : none;
+}
+
+#onglets li:hover
+{
+    color: #111;
+    font-family: "Beautiful";
+    font-size: 17px;
+    background-color: #fff;
+    height : 30px;
+    margin : -3px 0px 0 0px !important;  /* Pour les navigateurs autre que IE */
+    margin : -4px 0px 0 0px;  /* Pour IE  */
+    border-top-left-radius : 5px;
+    border-top-right-radius : 5px;
+}
+
+#onglets li:hover a
+{
+    color: #111;
+}
+
+#onglets li.active a{
+    color: #111;
+    font-size: 17px;
+}
+

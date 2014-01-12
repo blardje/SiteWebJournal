@@ -14,6 +14,12 @@
    margin-top: 3px;
 }
 
+#connexionBox{
+	float: right;
+	margin-top: 7px;
+	margin-right: 10px;
+}
+
 #deconnexionBox{
 	float: right;
 	margin-top: 7px;
@@ -35,7 +41,7 @@
 
 #recherche{
     float: left;
-    width: 30%;
+    width: 20%;
     margin-top: 7px;
     margin-left: 16px;
 }
@@ -94,7 +100,7 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 500;
     line-height: 1.1;
-    width: 80%;
+    width: 85%;
     float: right;
     margin-top: 0px;
 }

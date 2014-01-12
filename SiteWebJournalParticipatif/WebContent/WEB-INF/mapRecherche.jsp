@@ -9,22 +9,42 @@
 		<title>Rechercher une zone gépgraphique</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="css/mapRecherche.css">
-		<link rel="stylesheet" href="css/enTeteConnecte.css">
+		<link rel="stylesheet" href="css/enTete.css">
 	</head>
 
 <body onload="initialize();">
-	<header id='header'> <c:import
-		url="/PagePart/enTeteConnecte.jsp" /> 
+	<header id='header'> 
+		<c:if test="${ sessionScope.sessionUser != null}">
+			<c:import url="./PagePart/enTeteConnecte.jsp" /> 
+		</c:if> 
+		<c:if test="${ sessionScope.sessionUser == null}">
+			<c:import url="./PagePart/enTeteNonConnecte.jsp" /> 
+		</c:if>
 	</header>
 
     <article id="realBody">
     	<div id="contenu">
 	       	<div id="rechercheBox">
+	       		<div id="title"> Sélectionner une zone géographique</div>
 	       		<div id="information">
-		       		<span id="lieu">lieu</span></br>
-		       		<span id="latitude">latitude</span></br>
-		       		<span id="longitude">longitude</span></br>
-		       		<span id="rayon">rayon</span></br>
+			       		
+		    		<form action="<c:url value="/ConnexionUser"/>" method="post">
+						<input type="text" class="input" id="adresseCentre" placeholder="Adresse du centre du cerlce" name="adresseCentre" value="" size="45" maxlength="30"/>
+		       			</br></br>
+		       			<div id="slider">
+		       				<div id="textSlider">
+		       					<span>Rayon : </span>
+		       					<output id="rangevalue">250</output>
+		       					<span>Km</span>
+		       				</div>
+                    		<input type="range" name="rayonCercle" id="rayonCercle" value="250" min="0" max="500" onchange="rangevalue.value=value"/></br>
+                    	</div>
+		           	
+		           		</br>
+		       			<span class="hide" id="latitude">latitude</span></br>
+		       			<span class="hide" id="longitude">longitude</span></br>
+                    	<input type="submit" id="submitButtonRecherche" value="Rechercher les articles"  />
+		           	</form>
 	       		</div>
 		       	<div id="mapBox">
 	            	<div id="mapCanvas"></div>
@@ -33,7 +53,7 @@
 		</div>
 	    
 		<footer id='footer'> 
-			<c:import url="/PagePart/footer.jsp" />
+			<c:import url="./PagePart/footer.jsp" />
 		</footer> 
 		
     </article>

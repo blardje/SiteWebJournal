@@ -2,6 +2,9 @@ package beans;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Article implements Serializable{
 	private static final long serialVersionUID = 6304123991404658140L;
@@ -97,5 +100,22 @@ public class Article implements Serializable{
 		this.textArticle = textArticle;
 	}
 
+	public String getTime(){
+		String dateAretourner;
+		DateFormat formatAretournerAuj = new SimpleDateFormat( "kk:mm" );
+		DateFormat formatAretourner = new SimpleDateFormat( "EEE dd MMM" );
+		DateFormat formatControl = new SimpleDateFormat( "yyyy.MM.dd" );
+		
+		Timestamp current = new Timestamp(new Date().getTime());
+		
+		if ( formatControl.format(current).equals( formatControl.format(this.getDatePublie()) ) ) {
+			dateAretourner = formatAretournerAuj.format( this.getDatePublie());
+		}
+		else{
+			dateAretourner = formatAretourner.format( this.getDatePublie());
+		}
+		
+		return dateAretourner;
+	}
 	
 }

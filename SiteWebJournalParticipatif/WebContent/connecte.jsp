@@ -9,12 +9,19 @@
 <title>Journal participatif</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/connecte.css">
-	<link rel="stylesheet" href="css/enTeteConnecte.css">
+	<link rel="stylesheet" href="css/enTete.css">
+	<link rel="stylesheet" href="css/taillePage.css">
+	<link rel="stylesheet" href="css/ongletMenu.css">
 </head>
 
 <body>
-	<header id='header'> <c:import
-		url="/PagePart/enTeteConnecte.jsp" /> 
+	<header id='header'> 
+		<c:if test="${ sessionScope.sessionUser != null}">
+			<c:import url="/WEB-INF/PagePart/enTeteConnecte.jsp" /> 
+		</c:if> 
+		<c:if test="${ sessionScope.sessionUser == null}">
+			<c:import url="/WEB-INF/PagePart/enTeteNonConnecte.jsp" /> 
+		</c:if>
 	</header>
 
 	<article id="realBody">
@@ -32,12 +39,12 @@
 
 		<div id="menu">
 			<ul id="onglets">
-				<li class="active"><a href="#"> Hyperlocal </a></li>
-				<li><a href="#"> Local </a></li>
-				<li><a href="#"> Départemental </a></li>
-				<li><a href="#"> Régional </a></li>
-				<li><a href="#"> National </a></li>
-				<li><a href="#"> International </a></li>
+				<li class="active"><a href="#"> HYPERLOCAL </a></li>
+				<li><a href="#"> LOCAL </a></li>
+				<li><a href="#"> DEPARTEMENTAL </a></li>
+				<li><a href="#"> REGIONAL </a></li>
+				<li><a href="#"> NATIONAL </a></li>
+				<li><a href="#"> INTERNATIONAL </a></li>
 			</ul>
 		</div> 
 
@@ -83,40 +90,46 @@
 				<div class="categorie">
 					<div class="titreCategorie">A la une</div>
 
-					<c:forEach items="${ articles }" var="articles" varStatus="boucle">
-						<c:if test="${ articles.getCategorie()  == 'A la une'}">
+					<c:forEach items="${ articles.get(0) }" var="article" varStatus="boucle">
+<%-- 						<c:if test="${ article.getCategorie()  == 'A la une'}"> --%>
 							<div class="rubrique">
-								<div class="logo${ articles.getIdUtilisateur()}"></div>
+								<div class="logo${ article.getIdUtilisateur()}"></div>
 								<div class="rightDate">
-									<div>10h06</div>
-									<div>Today</div>
+									<span>${ article.getTime()}</span>
 								</div>
 								<div class="groupeArticle">
-									<div class="titreArticle">${ articles.getTitre() }</div>
-									<div class="article">${ articles.getTextArticle() }</div>
+									<div class="titreArticle">${ article.getTitre() }</div>
+									<div class="article">${ article.getTextArticle() }</div>
+								</div>
+								<div class="actionSurRubrique">
+									<a class="actionButton" href="#">Voir plus</a>
+									<a class="actionButton" href="#">Confirmer</a>
+									<a class="actionButton" href="#">Répondre</a>
 								</div>
 							</div>
-						</c:if>
+<%-- 						</c:if> --%>
 					</c:forEach>
 				</div>
 
 				<div class="categorie">
 					<div class="titreCategorie">Politique</div>
 
-					<c:forEach items="${ articles }" var="articles" varStatus="boucle">
-						<c:if test="${ articles.getCategorie()  == 'Politique'}">
+					<c:forEach items="${ articles.get(1) }" var="article" varStatus="boucle">
 							<div class="rubrique">
-								<div class="logo${ articles.getIdUtilisateur()}"></div>
+								<div class="logo${ article.getIdUtilisateur()}"></div>
 								<div class="rightDate">
-									<div>10h06</div>
-									<div>Today</div>
+									<span>${ article.getTime()}</span>
 								</div>
 								<div class="groupeArticle">
-									<div class="titreArticle">${ articles.getTitre() }</div>
-									<div class="article">${ articles.getTextArticle() }</div>
+									<div class="titreArticle">${ article.getTitre() }</div>
+									<div class="article">${ article.getTextArticle() }</div>
+								</div>
+								<div class="actionSurRubrique">
+									<a class="actionButton" href="#">Voir plus</a>
+									<a class="actionButton" href="#">Confirmer</a>
+									<a class="actionButton" href="#">Répondre</a>
 								</div>
 							</div>
-						</c:if>
 					</c:forEach>
 
 				</div>
@@ -125,20 +138,22 @@
 				<div class="categorie">
 					<div class="titreCategorie">Economie</div>
 
-					<c:forEach items="${ articles }" var="articles" varStatus="boucle">
-						<c:if test="${ articles.getCategorie()  == 'Economie'}">
+					<c:forEach items="${ articles.get(2) }" var="article" varStatus="boucle">
 							<div class="rubrique">
-								<div class="logo${ articles.getIdUtilisateur()}"></div>
+								<div class="logo${ article.getIdUtilisateur()}"></div>
 								<div class="rightDate">
-									<div>10h06</div>
-									<div>Today</div>
+									<span>${ article.getTime()}</span>
 								</div>
 								<div class="groupeArticle">
-									<div class="titreArticle">${ articles.getTitre() }</div>
-									<div class="article">${ articles.getTextArticle() }</div>
+									<div class="titreArticle">${ article.getTitre() }</div>
+									<div class="article">${ article.getTextArticle() }</div>
+								</div>
+								<div class="actionSurRubrique">
+									<a class="actionButton" href="#">Voir plus</a>
+									<a class="actionButton" href="#">Confirmer</a>
+									<a class="actionButton" href="#">Répondre</a>
 								</div>
 							</div>
-						</c:if>
 					</c:forEach>
 
 				</div>
@@ -146,20 +161,22 @@
 				<div class="categorie">
 					<div class="titreCategorie">Sport</div>
 
-					<c:forEach items="${ articles }" var="articles" varStatus="boucle">
-						<c:if test="${ articles.getCategorie()  == 'Sport'}">
+					<c:forEach items="${ articles.get(3) }" var="article" varStatus="boucle">
 							<div class="rubrique">
-								<div class="logo${ articles.getIdUtilisateur()}"></div>
+								<div class="logo${ article.getIdUtilisateur()}"></div>
 								<div class="rightDate">
-									<div>10h06</div>
-									<div>Today</div>
+									<span>${ article.getTime()}</span>
 								</div>
 								<div class="groupeArticle">
-									<div class="titreArticle">${ articles.getTitre() }</div>
-									<div class="article">${ articles.getTextArticle() }</div>
+									<div class="titreArticle">${ article.getTitre() }</div>
+									<div class="article">${ article.getTextArticle() }</div>
+								</div>
+								<div class="actionSurRubrique">
+									<a class="actionButton" href="#">Voir plus</a>
+									<a class="actionButton" href="#">Confirmer</a>
+									<a class="actionButton" href="#">Répondre</a>
 								</div>
 							</div>
-						</c:if>
 					</c:forEach>
 
 				</div>
@@ -167,25 +184,25 @@
 		</div>
 	</div>
 
-	<footer id='footer'> <c:import url="/PagePart/footer.jsp" />
+	<footer id='footer'> 
+		<c:import url="/WEB-INF/PagePart/footer.jsp" />
 	</footer> 
 	
 	</article>
 	<!--        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>-->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<!-- 	<script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script> -->
 	<script type="text/javascript">
-            function initialize() {
-               var input = document.getElementById('localisationInput');
-               /* restrict to multiple cities? */
-               var options = {
-                  types: ['geocode'],
-                  componentRestrictions: {country: "fr"}
-               };
-               var autocomplete = new google.maps.places.Autocomplete(input, options);
-            }
-            google.maps.event.addDomListener(window, 'load', initialize);
+//             function initialize() {
+//                var input = document.getElementById('localisationInput');
+//                /* restrict to multiple cities? */
+//                var options = {
+//                   types: ['geocode'],
+//                   componentRestrictions: {country: "fr"}
+//                };
+//                var autocomplete = new google.maps.places.Autocomplete(input, options);
+//             }
+//             google.maps.event.addDomListener(window, 'load', initialize);
         </script>
 </body>
 </html>

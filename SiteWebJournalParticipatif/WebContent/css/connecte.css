@@ -50,14 +50,8 @@ header {
 }
 
 .rightTitle{
-/*     font-family: "Beautiful"; */
     font-family: "WestonFreeRegular",Helvetica,Arial,sans-serif;
-/*     text-transform: uppercase; */
-    /*font-style:italic;*/
-    /*text-decoration:underline;*/
-/*     font-weight: bold; */
     font-size: 20px;    
-    /*padding: 10px;*/
     border-bottom: 1px solid rgb(1, 78, 102);
     margin-top: -5px;
     padding-bottom: 5px;
@@ -83,6 +77,7 @@ header {
     z-index: 0;
     box-shadow: inset 2px 0px 5px #333; 
     margin-top: 16px;
+    padding-top: 12px;
 }
 
 #bodyJournal{
@@ -137,88 +132,6 @@ header {
     margin-top: -23px;
 }
 
-/* Creation onglet menu */
-#ongletJournal{
-	width: 100%;
-	margin-bottom: -11px;
-}
-
-#menu{
-    width: 85%;
-}
-
-#onglets
-{
-    font-size: 14px;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    list-style-type : none;
-    padding-bottom : 24px;
-    width: 100%;
-    margin-left: -40px;
-}
-
-#onglets li
-{
-    float : left;
-    height : 21px;
-    background-color: #555;
-    color : #fff;
-    margin : 2px 0px 0 0px !important;  /* Pour les navigateurs autre que IE */
-    margin : 1px 0px 0 0px;  /* Pour IE  */
-    text-align: center;
-    width: 15%;
-}
-
-#onglets li.active
-{
-    background-color: #fff;
-    height : 26px;
-    margin : -3px 0px 0 0px !important;  /* Pour les navigateurs autre que IE */
-    margin : -4px 0px 0 0px;  /* Pour IE  */
-    font-size: 15px;
-}
-
-#onglets li a
-{
-    padding-top: 2px;
-    font-family: "Beautiful";
-}
-
-#onglets a
-{
-    display : block;
-    color : #fff;
-    text-decoration : none;
-    padding : -4px;
-}
-
-#onglets li:hover
-{
-    color: #111;
-    font-family: "Beautiful";
-    font-size: 17px;
-    background-color: #fff;
-    height : 27px;
-    margin : -3px 0px 0 0px !important;  /* Pour les navigateurs autre que IE */
-    margin : -4px 0px 0 0px;  /* Pour IE  */
-/*     border-top-left-radius:0.5em; */
-/*     border-top-right-radius:0.5em; */
-}
-
-#onglets li:hover a
-{
-    color: #111;
-    font-family: "Beautiful";
-}
-
-#onglets li.active a{
-    color: #111;
-/*     font-family: "Beautiful"; */
-    font-size: 17px;
-}
-/* Fin de création onglet menu*/
-
 #enTeteJournal{
     text-align: center;
 }
@@ -238,7 +151,7 @@ header {
     padding-right: 10px;
     z-index: 0;
     /*border: 1px solid #777;*/
-    margin-top: -15px;
+    margin-top: -12px;
 	padding-top: 2px;
 }
 
@@ -294,12 +207,12 @@ header {
 
 .titreCategorie{
     font-family: "Beautiful";
-font-size: 25px;
-color: rgb(34, 34, 34);
-margin-top: 12px;
-padding-left: 5px;
-font-weight: 100;
-border-bottom: 1px solid rgb(0, 0, 0);
+	font-size: 25px;
+	color: rgb(34, 34, 34);
+	margin-top: 12px;
+	padding-left: 5px;
+	font-weight: 100;
+	border-bottom: 1px solid rgb(0, 0, 0);
 }
 
 .rubrique{
@@ -310,28 +223,6 @@ border-bottom: 1px solid rgb(0, 0, 0);
 
 .rubrique:hover{
     box-shadow: inset 0 0 2px #333;
-}
-
-#openCreationArticle{
-    margin-top: 10px;
-    cursor: pointer;
-    padding-top: 8px;
-    margin-right: 12px;
-}
-
-#openCreationArticle:hover{
-    border-top: 1px solid #777;
-    border-bottom: 1px solid #777;
-}
-
-.arrow {
-    margin-left: 50%;
-    width:0; height:0;
-    border:4px solid transparent;
-    margin-top: -3px;
-}
-.down {
-    border-top:4px solid black;
 }
 
 .groupeArticle{
@@ -350,7 +241,22 @@ border-bottom: 1px solid rgb(0, 0, 0);
 
 .article{
     text-align: justify;
-    /*text-justify: newspaper;*/
+}
+
+.actionSurRubrique{
+	height: 20px;
+}
+
+.actionSurRubrique :hover{
+/* 	text-decoration: underline; */
+	color: #f55;
+}
+
+.actionButton{
+	color: #aaa;
+	float: right;
+	text-decoration: none;
+	padding-right: 10px;
 }
 
 .logo1{
